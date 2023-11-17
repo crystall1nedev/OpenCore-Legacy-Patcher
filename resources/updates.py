@@ -9,7 +9,7 @@ from packaging import version
 
 from resources import constants, network_handler
 
-REPO_LATEST_RELEASE_URL: str = "https://api.github.com/repos/dortania/OpenCore-Legacy-Patcher/releases/latest"
+REPO_LATEST_RELEASE_URL: str = "https://api.github.com/repos/crystall1nedev/OpenCore-Legacy-Patcher/releases/latest"
 
 
 class CheckBinaryUpdates:
