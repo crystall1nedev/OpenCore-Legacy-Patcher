@@ -1,41 +1,31 @@
 ![](../images/ventura.png)
 
-With the release of OpenCore Legacy Patcher v0.5.0 and newer, early support for macOS Ventura has been implemented for most Metal-capable Macs. This page will be used to inform users regarding current issues and will be updated as new patch sets are developed and added to our patcher.
+::: warning
+macOS Ventura is supported by OpenCore Legacy Patcher **0.5.0 and later,** currently in early stages.  
+Use the latest available version for the most stability.
+:::
 
-## Newly dropped hardware
+## Dropped Hardware
 
-Ventura's release dropped a large amount of Intel hardware, thus requiring the usage of OpenCore Legacy Patcher on the following models (in addition to previously removed models):
+In addition to all unsupported Macs, the following models will now require OpenCore Legacy Patcher to run macOS Ventura:
 
-* iMac16,1 (21.5-inch, Late 2015)
-* iMac16,2 (21.5-inch and 21.5-inch 4K, Late 2015)
-* iMac17,1 (27-inch 5K, Late 2015)
-* MacBook9,1 (12-inch, Early 2016)
-* MacBookAir7,1 (11-inch, Early 2015)
-* MacBookAir7,2 (13-inch, Early 2015)
-* MacBookPro11,4 (15-inch, Mid 2015, iGPU)
-* MacBookPro11,5 (15-inch, Mid 2015, dGPU)
-* MacBookPro12,1 (13-inch, Early 2015)
-* MacBookPro13,1 (13-inch, Late 2016)
-* MacBookPro13,2 (13-inch, Late 2016)
-* MacBookPro13,3 (15-inch, Late 2016)
-* Macmini7,1 (Late 2014)
-* MacPro6,1 (Late 2013)
+| Model Name | Model Identifier |
+| — | — |
+| iMac (21.5-inch, Late 2015) | `iMac16,1` | 
+| iMac (Retina 4K, 21.5-inch, Late 2015) | `iMac16,2` | 
+| iMac (Retina 5K, 27-inch, Late 2015) | `iMac17,1` |
+| MacBook (Retina, 12-inch, Early 2016) | `MacBook9,1` |
+| MacBook Air (11-inch, Early 2015) | `MacBookAir7,1` | 
+| MacBook Air (13-inch, Early 2015)<br>MacBook Air (13-inch, 2017) | `MacBookAir7,2` | 
+| MacBook Pro (Retina, 15-inch, Mid 2015) | `MacBookPro11,4`<br>`MacBookPro11,5` | 
+| MacBook Pro (Retina, 13-inch, Early 2015) | `MacBookPro12,1` | 
+| MacBook Pro (13-inch, 2016, 2 Thunderbolt 3 ports) | `MacBookPro13,1` | 
+| MacBook Pro (13-inch, 2016, 4 Thunderbolt 3 ports) | `MacBookPro13,2` | 
+| MacBook Pro (15-inch, 2016) | `MacBookPro13,3` | 
+| Mac mini (Late 2014) | `Macmini7,1` | 
+| Mac Pro (Late 2013) | `MacPro6,1` |
 
-
-## Current status
-
-<img width="625" alt="" src="../images/OCLP-060-Initial-Support.png">
-
-For older hardware, see below sections:
-
-* [Currently Unsupported/Broken Hardware in Ventura](#currently-unsupportedbroken-hardware-in-ventura)
-  * [AMD Polaris, Vega and Navi support on pre-2019 Mac Pros and pre-2012 iMacs](#amd-polaris-vega-and-navi-support-on-pre-2019-mac-pros-and-pre-2012-imacs)
-  * [USB 1.1 (OHCI/UHCI) Support](#usb-11-ohciuhci-support)
-  * [Ethernet issue with Early 2008 Mac Pro](#ethernet-issue-with-early-2008-mac-pro)
-
-The team is doing their best to investigate and fix the aforementioned issues, however no estimated time can be provided.
-
-## Currently Unsupported/Broken Hardware in Ventura
+## Current Issues
 
 ### AMD Polaris, Vega and Navi support on pre-2019 Mac Pros and pre-2012 iMacs
 
