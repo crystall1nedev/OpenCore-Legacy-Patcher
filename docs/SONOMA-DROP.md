@@ -1,10 +1,26 @@
 ![](../images/sonoma.png)
 
-*Well here we are again, it's always such a pleasure~*
 
-Apple has yet again dropped a bunch of models, continuing their journey on discontinuing Intel Macs. With the release of OpenCore Legacy Patcher 1.0.0, early support for macOS Sonoma has been implemented.
+::: warning
+macOS Sonoma is supported by OpenCore Legacy Patcher **1.0.0 and later,** currently in early stages.  
+Use the latest available version for the most stability.
+:::
 
-## Versioning
+## Dropped Hardware
+
+In addition to all unsupported Macs, the following models will now require OpenCore Legacy Patcher to run macOS Ventura:
+
+| Model Name | Model Identifier |
+| — | — |
+| iMac (21.5-inch, 2017) | `iMac18,1` | 
+| iMac (Retina 4K, 21.5-inch, 2017) | `iMac18,2` | 
+| iMac (Retina 5K, 27-inch, 2017) | `iMac18,3` |
+| MacBook (Retina, 12-inch, 2017) | `MacBook10,1` | 
+| MacBook Pro (13-inch, 2017, 2 Thunderbolt 3 ports) | `MacBookPro13,1` | 
+| MacBook Pro (13-inch, 2017, 4 Thunderbolt 3 ports) | `MacBookPro13,2` | 
+| MacBook Pro (15-inch, 2017) | `MacBookPro13,3` | 
+
+## Updates to OCLP versioning
 
 With 1.0.0, we'll be switching to a proper major, minor and bug fix system ([Semantic Versioning](https://semver.org/)). This means the coming release will be version 1.0.0, and future releases plan to follow this scheme:
 
@@ -12,22 +28,7 @@ With 1.0.0, we'll be switching to a proper major, minor and bug fix system ([Sem
 - Second digit: Minor changes, including incoming OS update fixes, minor patch set changes, etc
 - Third digit: Bug fixes, primarily hot fixes either due to a regression in prior release or resolving issues in already released OS updates
 
-
-## Newly dropped hardware
-
-* MacBook10,1:       MacBook (Retina, 12-inch, 2017)
-* MacBookPro14,1:    MacBook Pro (13-inch, 2017, Two Thunderbolt 3 ports)
-* MacBookPro14,2:    MacBook Pro (13-inch, 2017, Four Thunderbolt 3 Ports)
-* MacBookPro14,3:    MacBook Pro (15-inch, 2017)
-* iMac18,1:          iMac (21.5-inch, 2017)
-* iMac18,2:          iMac (Retina 4K, 21.5-inch, 2017)
-* iMac18,3:          iMac (Retina 5K, 27-inch, 2017)
-
-## Current status
-
-OpenCore Legacy Patcher 1.0.0 will support Sonoma for all models normally supported by the Patcher, however some challenges remain. You can find information about them below.
-
-## Issues
+## Current Issues
 
 * [Bluetooth](#bluetooth)
 * [T1 Security chip](#t1-security-chip)
@@ -45,7 +46,7 @@ Dual boots may also bring the issue back even after the reset.
 
 ::: details Support for the T1 Security chip (Resolved in 1.1.0 and newer)
 
-Sonoma has removed support for T1 chips found in most 2016 and 2017 Macs. Therefore on these systems, the following will not function:
+Sonoma has removed support for T1 chips found in the 2016 and 2017 MacBook Pros with Touch Bar. Therefore on these systems, the following will not function:
 
 * Enable or disable FileVault
 * Open the Password Settings window
@@ -57,7 +58,15 @@ Sonoma has removed support for T1 chips found in most 2016 and 2017 Macs. Theref
 :::
 
 ::: warning
-Note that erasing the entire drive will remove the T1 firmware and it won't be reinstalled.
+**Do not** erase the EFI partition on the internal drive of these machines when upgrading to macOS Sonoma. If a clean install is desired, this can be done by erasing the APFS container.
+
+Erasing the EFI partition of these Macs results in the T1 Security chip firmware being removed, killing all functionality related to it: Touch ID, Touch Bar, Apple Pay, etc.
+
+Since the firmware cannot currently be reinstalled from macOS Sonoma, reinstalling macOS Ventura or earlier, as well as having a connection to the internet, is required to restore the firmware.
+:::
+
+::: warning
+Updating macOS may result in enrolled fingerprints and Apple Pay cards being removed from the system, as well as FileVault automatically being disabled.
 :::
 
 ### USB 1.1 (OHCI/UHCI) Support
