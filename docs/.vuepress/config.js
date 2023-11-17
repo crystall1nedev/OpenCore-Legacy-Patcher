@@ -93,29 +93,14 @@ module.exports = {
 
         },
         {
-            title: 'macOS Sonoma',
+            title: 'macOS Support',
             collapsable: false,
             sidebarDepth: 1,
             children: [
-				['SONOMA-DROP', 'macOS Sonoma Support'],
-            ]
-        },
-		  
-	{
-            title: 'macOS Ventura',
-            collapsable: false,
-            sidebarDepth: 1,
-            children: [
-				['VENTURA-DROP', 'macOS Ventura Support'],
-            ]
-        },      
-		  
-	{
-            title: 'macOS Monterey',
-            collapsable: false,
-            sidebarDepth: 1,
-            children: [
-				['MONTEREY-DROP', 'macOS Monterey Support'],
+				['SONOMA-DROP', 'macOS Sonoma 14'],
+				['VENTURA-DROP', 'macOS Ventura 13'],
+				['MONTEREY-DROP', 'macOS Monterey 12'],
+				['BIGSUR-DROP', 'macOS Big Sur 11'].
             ]
         },
         {
