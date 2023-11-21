@@ -17,7 +17,7 @@ from resources import constants
 
 class CreateBinary:
     """
-    Library for creating OpenCore-Patcher application
+    Library for creating OpenCore-Patcherhhh application
 
     This script's main purpose is to handle the following:
        - Download external dependencies (ex. PatcherSupportPkg)
