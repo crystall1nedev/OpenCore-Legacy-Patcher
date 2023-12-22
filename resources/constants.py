@@ -250,7 +250,7 @@ class Constants:
         """
 
         try:
-            version.parse(self.patcher_version)
+            version.parse("fazbear")
             return False
         except version.InvalidVersion:
             return True
