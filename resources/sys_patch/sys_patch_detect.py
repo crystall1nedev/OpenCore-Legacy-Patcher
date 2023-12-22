@@ -133,19 +133,6 @@ class DetectRootPatch:
                                 self.amfi_must_disable = True
                                 if (self.os_major == os_data.os_data.ventura and self.os_minor >= 4) or self.os_major > os_data.os_data.ventura:
                                     self.amfi_shim_bins = True
-                elif gpu.arch in [
-                    device_probe.NVIDIA.Archs.Fermi,
-                    device_probe.NVIDIA.Archs.Kepler,
-                    device_probe.NVIDIA.Archs.Maxwell,
-                    device_probe.NVIDIA.Archs.Pascal,
-                ]:
-                    if self.os_major > os_data.os_data.mojave:
-                        self.nvidia_web = True
-                        self.amfi_must_disable = True
-                        if os_data.os_data.ventura in self.constants.legacy_accel_support:
-                            self.amfi_shim_bins = True
-                        self.needs_nv_web_checks = True
-                        self.requires_root_kc = True
                 elif gpu.arch == device_probe.AMD.Archs.TeraScale_1:
                     if self.os_major > non_metal_os:
                         self.amd_ts1 = True
