@@ -47,10 +47,10 @@ class CPUMissingAVX(BaseHardware):
 
     def native_os(self) -> bool:
         """
-        Only install this patch on macOS Ventura.
-        This is because we integrated the patch into the WiFi patches which all Macs use in Sonoma+.
+        Only install this patch on macOS Ventura for all non-AVX Macs, or newer on non-AVX Macs without wireless cards.
+        This is because we integrated the patch into the WiFi patches which most Macs use in Sonoma+.
         """
-        if self._xnu_major != os_data.ventura.value:
+        if self._xnu_major < os_data.ventura.value:
             return True
 
         if LegacyWireless(self._xnu_major, self._xnu_minor, self._os_build, self._constants).present() is True:
@@ -76,10 +76,10 @@ class CPUMissingAVX(BaseHardware):
             return {}
 
         return {
-            "CPU Missing AVX": {
+            "Non-AVX Patches Common": {
                 PatchType.MERGE_SYSTEM_VOLUME: {
                     "/System/Library/PrivateFrameworks": {
-                        "IO80211.framework": "13.7.2-22",
+                        "IO80211.framework": f"13.7.2 non-AVX-{self._xnu_major}",
                     },
                 }
             },
