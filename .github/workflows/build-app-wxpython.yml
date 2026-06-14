@@ -12,7 +12,6 @@ jobs:
   build:
     name: Build wxPython
     runs-on: x86_64_monterey
-    if: github.repository_owner == 'dortania'
 
     env:
       # GitHub Information
