@@ -47,7 +47,7 @@ class AutoUpdateStages:
     CHECKING = 1
     BUILDING = 2
     INSTALLING = 3
-    ROOT_PATCHING = 4
+    UNPATCHING = 4
     FINISHED = 5
 
 
