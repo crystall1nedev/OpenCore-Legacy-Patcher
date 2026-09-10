@@ -88,7 +88,7 @@ class HardwarePatchsetValidation(StrEnum):
     NVDA_DRV_MISSING              = "Validation: nvda_drv(_vrl) variable missing"
     PATCHING_NOT_POSSIBLE         = "Validation: Patching not possible"
     UNPATCHING_NOT_POSSIBLE       = "Validation: Unpatching not possible"
-    REPATCHING_NOT_SUPPORTED      = "Validation: Root volume dirty, unpatch to continue"
+    REPATCHING_NOT_SUPPORTED      = "Validation: Revert first to update or reinstall OCLP patches"
 
 
 class HardwarePatchsetDetection:
@@ -189,8 +189,6 @@ class HardwarePatchsetDetection:
         Determine if repatching is not allowed
         """
         oclp_patch_path = "/System/Library/CoreServices/OpenCore-Legacy-Patcher.plist"
-        if not Path(oclp_patch_path).exists():
-            return self._is_root_volume_dirty()
 
         oclp_plist = plistlib.load(open(oclp_patch_path, "rb"))
 
@@ -341,28 +339,6 @@ class HardwarePatchsetDetection:
         Check if MetallibSupportPkg is present
         """
         return metallib_handler.MetalLibraryObject(self._constants, self._os_build, self._os_version).metallib_already_installed
-
-    
-    def _is_root_volume_dirty(self) -> bool:
-        """
-        Determine if system volume is not sealed
-        """
-        # macOS 11.0 introduced sealed system volumes
-        if self._xnu_major < os_data.big_sur.value:
-            return False
-        
-        try:
-            content = plistlib.loads(subprocess.run(["/usr/sbin/diskutil", "info", "-plist", "/"], capture_output=True).stdout)
-        except plistlib.InvalidFileException:
-            raise RuntimeError("Failed to parse diskutil output.")
-
-        seal = content["Sealed"]
-
-        if "Broken" in seal:
-            logging.error(f"System volume is tainted, unpatching is required")
-            return True
-
-        return False
 
 
     def _can_patch(self, requirements: dict, ignore_keys: list[str] = []) -> bool:
