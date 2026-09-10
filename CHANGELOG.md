@@ -1,5 +1,9 @@
 # OpenCore Legacy Patcher changelog
 
+## 2.5.1 
+- Fix "Root Volume Dirty" appearing after unpatching
+- Reword "Root Volume Dirty" to be clearer for users
+
 ## 2.5.0
 - Disable repatching a dirty root volume
   - Prevents issues if existing patches are partially overwritten
