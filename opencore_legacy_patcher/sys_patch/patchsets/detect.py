@@ -184,7 +184,7 @@ class HardwarePatchsetDetection:
         return "FileVault is Off" not in subprocess.run(["/usr/bin/fdesetup", "status"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT).stdout.decode()
 
     
-    def _validation_check_repatching_is_possible(self) -> bool:
+    def _validation_check_repatching_not_possible(self) -> bool:
         """
         Determine if repatching is not allowed
         """
@@ -537,7 +537,7 @@ class HardwarePatchsetDetection:
             HardwarePatchsetValidation.SIP_ENABLED:                 self._validation_check_system_integrity_protection_enabled(required_sip_configs),
             HardwarePatchsetValidation.SECURE_BOOT_MODEL_ENABLED:   self._validation_check_secure_boot_model_enabled(),
             HardwarePatchsetValidation.AMFI_ENABLED:                self._validation_check_amfi_enabled(highest_amfi_level),
-            HardwarePatchsetValidation.REPATCHING_NOT_SUPPORTED:    self._validation_check_repatching_is_possible(),
+            HardwarePatchsetValidation.REPATCHING_NOT_SUPPORTED:    self._validation_check_repatching_not_possible(),
             HardwarePatchsetValidation.WHATEVERGREEN_MISSING:       self._validation_check_whatevergreen_missing() if has_nvidia_web_drivers is True else False,
             HardwarePatchsetValidation.FORCE_OPENGL_MISSING:        self._validation_check_force_opengl_missing()  if has_nvidia_web_drivers is True else False,
             HardwarePatchsetValidation.FORCE_COMPAT_MISSING:        self._validation_check_force_compat_missing()  if has_nvidia_web_drivers is True else False,
