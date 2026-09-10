@@ -189,8 +189,12 @@ class HardwarePatchsetDetection:
         Determine if repatching is not allowed
         """
         oclp_patch_path = "/System/Library/CoreServices/OpenCore-Legacy-Patcher.plist"
-
-        oclp_plist = plistlib.load(open(oclp_patch_path, "rb"))
+        if not Path(oclp_patch_path).exists():
+            return False
+        try:
+            oclp_plist = plistlib.load(open(oclp_patch_path, "rb"))
+        except Exception as e:
+            return False
 
         if self._constants.computer.oclp_sys_url != self._constants.commit_info[2]:
             logging.error("Installed patches are from different commit, unpatching is required")
